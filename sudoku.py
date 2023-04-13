@@ -159,36 +159,6 @@ def generate_board():
 
     return board
 
-# if __name__ == "__main__":
-
-#     seqtimes = []
-#     greedytimes = []
-
-#     for i in range(1):
-#         board = generate_board()
-#         board2 = copy.deepcopy(board)
-#         print_board(board)
-#         starttime = time.time()
-#         cProfile.run("solve(board)")
-#         endtime = time.time()
-#         #print("Time taken : ", endtime - starttime)
-#         seqtime = endtime - starttime
-#         seqtimes += [seqtime]
-#         print_board(board)
-
-#         print_board(board2)
-#         starttime2 = time.time()
-#         cProfile.run("solve_greedy(board2)")
-#         endtime2 = time.time()
-#         #print("Time taken : ", endtime - starttime)
-#         greedytime = endtime2 - starttime2
-#         greedytimes += [greedytimes]
-#         print_board(board2)
-
-#         with open('values.csv','a') as f:
-#             wr = csv.writer(f)
-#             wr.writerow([seqtime,greedytime])
-
 if __name__ == "__main__":
 
     array = []
@@ -197,7 +167,7 @@ if __name__ == "__main__":
             array.append(line)
 
     n = int(array[0])
-    for i in range(1,100):
+    for i in range(1,2):
         str = array[i].rstrip("\n")
         board = []
         k = 0
@@ -207,17 +177,20 @@ if __name__ == "__main__":
                 arr.append(int(str[k]))
                 k = k + 1
             board.append(arr)
+
         board2 = copy.deepcopy(board)
 
+        print(board)
         start1 = time.time()
         solve(board)
         seqtime = time.time() - start1
+        print(board)
 
         start2 = time.time()
         solve_greedy(board2)
         greedytime = time.time() - start2
 
-        print(i)
-        with open('values.csv','a') as f:
-            wr = csv.writer(f)
-            wr.writerow([seqtime,greedytime])
+        # print(i)
+        # with open('values.csv','a') as f:
+        #     wr = csv.writer(f)
+        #     wr.writerow([seqtime,greedytime])
